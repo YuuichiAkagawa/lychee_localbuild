@@ -22,6 +22,11 @@ RUN curl -L https://launchpad.net/gcc-arm-embedded/4.9/4.9-2015-q3-update/+downl
 # mbed
 RUN pip install mbed-cli && mbed import https://github.com/d-kato/blinky-for-lychee
 
+#update mbed-os
+RUN cd blinky-for-lychee/mbed-os && mbed sync && mbed update Feature_LYCHEE
+
+RUN echo "umask 000" >> /root/.bashrc
+
 VOLUME ["/mbed/projects"]
 
 CMD ["/bin/bash"]

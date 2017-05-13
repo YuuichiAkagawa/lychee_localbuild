@@ -15,6 +15,8 @@ docker run --rm -it -v ~/projects:/mbed/projects lychee
 volumeを使っているのでプロジェクトを格納するディレクトリを指定してください。
 例では、ホームディレクトリあるprojectsを指定しています。
 
+※ファイルのオーナーがrootになって扱いにくいので、`umask 000`としてます。
+
 ## 使い方
 Lチカサンプルをコピーして使い回しても構わないのですが、プロジェクト毎にmbed-os等を持ってくるとディスクを喰うのでシンボリックリンクがオススメです。
 
@@ -52,3 +54,8 @@ main.cppにプログラム作成
 $ mbed compile -m GR_LYCHEE -t GCC_ARM --profile debug
 ```
 
+## その他
+ビルドのコマンドが長いので、お好みでaliasを設定しても良いですね。
+```
+alias build="mbed compile -m GR_LYCHEE -t GCC_ARM --profile debug"
+```
